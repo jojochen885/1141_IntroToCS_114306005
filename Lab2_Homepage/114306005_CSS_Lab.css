@@ -1,11 +1,10 @@
 body {
     margin: 0;
-    background-color: #EEEEEE;
+    background-color: white;
     font-family: Arial, sans-serif;
     color: black;
 }
 
-/* Header Section */
 .header {
     background-color: #2D9CDB;
     padding: 40px 20px;
@@ -23,7 +22,6 @@ body {
     font-size: 20px;
 }
 
-/* Navigation Bar */
 .navbar {
     list-style-type: none;
     margin: 0;
@@ -46,7 +44,6 @@ body {
     background-color: #37474F;
 }
 
-/* Dropdown Menu */
 .dropdown {
     position: relative;
 }
@@ -73,13 +70,11 @@ body {
     display: block;
 }
 
-/* Page content */
 .content {
     padding: 30px;
     font-size: 18px;
 }
 
-/* Media Types */
 @media all {
     body { border: 3px solid black; }
 }
