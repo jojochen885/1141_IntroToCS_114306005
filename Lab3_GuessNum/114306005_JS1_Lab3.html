@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Number Guessing Game</title>
+</head>
+<body>
+
+<h1>114306005_Number Guessing Game</h1>
+
+<div id="image"></div>
+
+<script>
+    var answer = Math.floor(Math.random() * 100) + 1; 
+    var chances = 7;
+
+    while (chances > 0) {
+
+        var input = window.prompt(
+            "請輸入1到100之間的整數\n" +
+            "你還有" + chances +"次機會"
+        );
+
+        if (input === null || input.trim() === "") {
+            alert("Input cannot be empty!");
+            continue;
+        }
+
+        if (isNaN(input)) {
+            alert("請輸入1到100之間的整數");
+            continue;
+        }
+
+        var guess = Number(input);
+
+        if (guess < 1 || guess > 100) {
+            alert("請輸入有效範圍內的數字( 不能超出1到100 )!");
+            continue;
+        }
+
+        if (guess === answer) {
+            alert("恭喜你答對了!正確答案是 " + answer + "!");
+            document.getElementById("image").innerHTML ='<img src="correct.jpg" alt="correct">';
+            break;
+        } else {
+            chances--;
+            if (guess > answer) {
+                alert("Too high!");
+            } else {
+                alert("Too low!");
+            }
+        }
+
+        if (chances === 0) {
+            alert("No attempts left! The correct answer was " + answer + ".");
+            document.getElementById("image").innerHTML ='<img src="wrong.jpg" alt="correct">';
+        }
+    }
+</script>
+
+</body>
+</html>
