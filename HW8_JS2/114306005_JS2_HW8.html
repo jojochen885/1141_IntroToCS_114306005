@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Calculator - HW8</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .calculator-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; 
+            font-size: 16px;
+        }
+
+        button#calculateBtn {
+            background-color: #8b5a2b; 
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button#calculateBtn:hover {
+            background-color: #6a441e;
+        }
+
+        #resultDisplay {
+            margin-top: 25px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h1>JS Calculator</h1>
+
+        <div class="input-group">
+            <label for="num1">Number 1</label>
+            <input type="number" id="num1" value="30" required>
+        </div>
+
+        <div class="input-group">
+            <label for="num2">Number 2</label>
+            <input type="number" id="num2" value="60" required>
+        </div>
+
+        <div class="input-group">
+            <label for="operator">Operate way?</label>
+            <select id="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+        </div>
+
+        <button id="calculateBtn">Calculate</button>
+
+        <p id="resultDisplay">Result = 0.00</p>
+    </div>
+
+    <script>
+        function add(a, b) {
+            return Number(a) + Number(b);
+        }
+
+        function subtract(a, b) {
+            return Number(a) - Number(b);
+        }
+
+        function multiply(a, b) {
+            return Number(a) * Number(b);
+        }
+
+        function divide(a, b) {
+            if (Number(b) === 0) {
+                return "Error: Division by zero";
+            }
+            return Number(a) / Number(b);
+        }
+
+        function calculate() {
+            const num1Input = document.getElementById('num1');
+            const num2Input = document.getElementById('num2');
+            const operatorSelect = document.getElementById('operator');
+            const resultDisplay = document.getElementById('resultDisplay');
+
+            const num1 = num1Input.value;
+            const num2 = num2Input.value;
+            const operator = operatorSelect.value;
+            let result;
+
+            if (num1 === "" || num2 === "") {
+                resultDisplay.textContent = "Result = Invalid Input";
+                return;
+            }
+
+            switch (operator) {
+                case '+':
+                    result = add(num1, num2);
+                    break;
+                case '-':
+                    result = subtract(num1, num2);
+                    break;
+                case '*':
+                    result = multiply(num1, num2);
+                    break;
+                case '/':
+                    result = divide(num1, num2);
+                    break;
+                default:
+                    result = "Error: Invalid Operator";
+            }
+
+            if (typeof result === 'number') {
+                resultDisplay.textContent = `Result = ${result.toFixed(2)}`;
+            } else {
+                resultDisplay.textContent = `Result = ${result}`;
+            }
+        }
+
+        const calculateBtn = document.getElementById('calculateBtn');
+        calculateBtn.addEventListener('click', calculate);
+        document.addEventListener('DOMContentLoaded', calculate);
+    </script>
+</body>
+</html>
